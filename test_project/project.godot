@@ -1,0 +1,15 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are defined by the engine's init.
+
+config_version=5
+
+[application]
+
+config/name="Box3D Test"
+config/features=PackedStringArray("4.3")
+
+
+[physics]
+
+3d/physics_engine="Box3D Physics (Extension)"
