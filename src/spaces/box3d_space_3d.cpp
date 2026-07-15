@@ -6,7 +6,7 @@
 #include "../objects/box3d_physics_direct_body_state_3d.hpp"
 #include "../objects/box3d_shaped_object_impl_3d.hpp"
 #include "box3d_physics_direct_space_state_3d.hpp"
-
+#include <godot_cpp/classes/engine.hpp>
 #include <box3d/box3d.h>
 
 namespace {
@@ -72,6 +72,10 @@ void Box3DSpace3D::set_default_area(Box3DAreaImpl3D* p_area) {
 }
 
 void Box3DSpace3D::step(float p_step) {
+	if (godot::Engine::get_singleton()->is_editor_hint()) {
+		return;
+	}
+
 	last_step = p_step;
 
 	_apply_area_overrides();
@@ -89,11 +93,6 @@ void Box3DSpace3D::step(float p_step) {
 	_pull_body_events();
 	_pull_sensor_events();
 
-	// Contact and joint events are intentionally not drained into any callback pipeline
-	// for v1: RigidBody3D contact monitoring is served on-demand via
-	// b3Body_GetContactData, and joint events are ignored, per the plan. We still fetch
-	// them here so any internal Box3D per-step bookkeeping tied to fetching is exercised
-	// consistently, though this is not strictly required by the API.
 	b3World_GetContactEvents(world_id);
 	b3World_GetJointEvents(world_id);
 }
