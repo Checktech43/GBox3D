@@ -1,4 +1,4 @@
-# godot-box3d
+# GBox3D
 ### This project was originally a fork of [godot-box3d](https://github.com/bearlikelion/godot-box3d) by bearlikelion, licensed under MIT. This a revamped and renamed version by Checktech43, which includes additional physics fixes for specifically Godot and other bug fixes soon to come.
 
 A [GDExtension](https://docs.godotengine.org/en/stable/tutorials/scripting/gdextension/what_is_gdextension.html) that integrates [Box3D](https://github.com/erincatto/box3d), Erin Catto's 3D physics engine, into Godot 4 as a drop-in replacement for the built-in `PhysicsServer3D`.
